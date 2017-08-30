@@ -1,6 +1,10 @@
 package core;
 
+import commands.CmdClear;
+import commands.CmdPing;
+import listeners.CommandListener;
 import listeners.ReadyListener;
+import listeners.ReconnectListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -22,7 +26,8 @@ public class Main {
         builder.setAutoReconnect(true);
 
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.addEventListener(new ReadyListener());
+        addListeners(builder);
+        addCommands(builder);
 
         builder.setGame(new Game() {
             @Override
@@ -43,14 +48,21 @@ public class Main {
 
         try {
             JDA jda = builder.buildBlocking();
-        } catch (LoginException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (RateLimitedException e) {
+        } catch (LoginException | InterruptedException | RateLimitedException e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    private static void addListeners(JDABuilder builder) {
+        builder.addEventListener(new ReadyListener());
+        builder.addEventListener(new ReconnectListener());
+        builder.addEventListener(new CommandListener());
+    }
+
+    private static void addCommands(JDABuilder builder) {
+        CommandHandler.commands.put("ping", new CmdPing());
+        CommandHandler.commands.put("clear", new CmdClear());
     }
 }
