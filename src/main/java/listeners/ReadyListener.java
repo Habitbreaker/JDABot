@@ -1,8 +1,11 @@
 package listeners;
 
+import agent.VoiceChannelCleanup;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+
+import javax.sound.midi.Soundbank;
 
 public class ReadyListener extends ListenerAdapter{
 
@@ -17,10 +20,9 @@ public class ReadyListener extends ListenerAdapter{
         System.out.println(out);
 
         for (Guild guild : event.getJDA().getGuilds()) {
-            guild.getTextChannels().get(0).sendMessage(
-                   "Hello darkness my old friend :neutral_face:"
-            ).queue();
+            System.out.println("Bot joined " + guild);
         }
+
         }
 
 

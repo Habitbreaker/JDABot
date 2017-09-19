@@ -9,9 +9,7 @@ public class ReconnectListener extends ListenerAdapter {
     @Override
     public void onReconnect(ReconnectedEvent event) {
         for (Guild guild : event.getJDA().getGuilds()) {
-            guild.getTextChannels().get(0).sendMessage(
-                    "Ich bin wieder da  :wave:"
-            ).queue();
+            System.out.println("Reconnected");
         }
     }
 }

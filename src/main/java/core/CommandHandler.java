@@ -3,9 +3,7 @@ package core;
 import commands.Command;
 
 import java.util.HashMap;
-/**
- * Copy pasta from Youtube ¯\_(ツ)_/¯
- */
+
 public class CommandHandler {
     public static final CommandParser parser = new CommandParser();
     static HashMap<String, Command> commands = new HashMap<>();

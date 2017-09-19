@@ -1,5 +1,7 @@
 package commands;
 
+import embeds.EmbedError;
+import embeds.EmbedSuccess;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageHistory;
@@ -13,9 +15,6 @@ import java.util.TimerTask;
 
 public class CmdClear implements Command{
 
-    private EmbedBuilder error = new EmbedBuilder().setColor(Color.RED);
-    private EmbedBuilder success = new EmbedBuilder().setColor(Color.GREEN);
-
     private int getInt(String string) {
         try {
             return Integer.parseInt(string);
@@ -27,7 +26,12 @@ public class CmdClear implements Command{
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
-        return false;
+        if(event.getAuthor().getId().equals("249171508247789570")) {
+            return false;
+        } else {
+            event.getChannel().sendMessage(new EmbedError("You have no permissions to run this command!").getEmbed()).queue();
+            return true;
+        }
     }
 
     @Override
@@ -37,7 +41,7 @@ public class CmdClear implements Command{
 
         if (args.length < 1) {
             event.getTextChannel().sendMessage(
-                error.setDescription("Please enter number of messages to delete!").build()
+                new EmbedError("Please enter number of messages to delete!").getEmbed()
             ).queue();
         }
 
@@ -54,7 +58,7 @@ public class CmdClear implements Command{
                 msgs = history.retrievePast(numb).complete();
                 event.getTextChannel().deleteMessages(msgs).queue();
 
-               Message msg = event.getTextChannel().sendMessage( success.setDescription(":wastebasket: Cleared " + numb + " messages").build()).complete();
+               Message msg = event.getTextChannel().sendMessage( new EmbedSuccess(":wastebasket: Cleared " + numb + " messages").getEmbed()).complete();
 
                new Timer().schedule(new TimerTask() {
                    @Override
@@ -68,7 +72,7 @@ public class CmdClear implements Command{
             }
         } else {
             event.getTextChannel().sendMessage(
-                    error.setDescription("Number must be between 2 and 100!").build()
+                    new EmbedError("Number must be between 2 and 100!").getEmbed()
             ).queue();
         }
 

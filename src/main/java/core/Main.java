@@ -1,7 +1,9 @@
 package core;
 
+import commands.CmdCall;
 import commands.CmdClear;
 import commands.CmdPing;
+import commands.Music;
 import listeners.CommandListener;
 import listeners.ReadyListener;
 import listeners.ReconnectListener;
@@ -64,5 +66,8 @@ public class Main {
     private static void addCommands(JDABuilder builder) {
         CommandHandler.commands.put("ping", new CmdPing());
         CommandHandler.commands.put("clear", new CmdClear());
+        CommandHandler.commands.put("call", new CmdCall());
+        CommandHandler.commands.put("m", new Music());
+        CommandHandler.commands.put("music", new Music());
     }
 }

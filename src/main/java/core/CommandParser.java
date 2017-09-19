@@ -5,13 +5,25 @@ import util.STATIC;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandParser {
 
     public CommandContainer parse(String raw, MessageReceivedEvent event) {
 
         String beheaded = raw.replaceFirst(STATIC.PREFIX, "");
-        String[] splitBeheaded = beheaded.split(" ");
+        String[] splitBeheaded;
+        Pattern pattern = Pattern.compile("(\"[\\W\\w]+\"$)");
+        Matcher matcher = pattern.matcher(beheaded);
+        if(matcher.find()) {
+            splitBeheaded = new String[3];
+            splitBeheaded[0] = beheaded.split(" ")[0];
+            splitBeheaded[1]= beheaded.split(" ")[1];
+            splitBeheaded[2] = matcher.group(1).replaceAll("\"", "");
+        } else {
+            splitBeheaded = beheaded.split(" ");
+        }
         String invoke = splitBeheaded[0];
         ArrayList<String> split = new ArrayList<>();
         Collections.addAll(split, splitBeheaded);
