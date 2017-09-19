@@ -1,0 +1,7 @@
+# Config for Bot
+
+---
+
+TOKEN: myToken
+PATH_FUN_CMDS: C:\\Dir\\To\\Music
+PREFIX: "!"
