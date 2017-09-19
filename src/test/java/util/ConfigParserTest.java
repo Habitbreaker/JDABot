@@ -19,6 +19,9 @@ public class ConfigParserTest {
     File test1 = new File("testFiles/test1.yaml");
     File test2 = new File("testFiles/test2.yaml");
 
+    /*
+    Tests parser
+     */
     @Test
     void shouldReadLines() {
         try {
