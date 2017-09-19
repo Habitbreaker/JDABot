@@ -11,6 +11,7 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
+
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import util.SECRETS;
@@ -31,7 +32,7 @@ public class Main {
         addListeners(builder);
         addCommands(builder);
 
-        builder.setGame(new Game() {
+        builder.setGame(new Game("self") {
             @Override
             public String getName() {
                 return "Say " + STATIC.PREFIX +" help";
