@@ -24,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
 
         JDABuilder builder = new JDABuilder(AccountType.BOT);
-
+        SECRETS.receiveTOKEN();
         builder.setToken(SECRETS.TOKEN);
         builder.setAutoReconnect(true);
 

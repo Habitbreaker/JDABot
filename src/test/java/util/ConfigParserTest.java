@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class ConfigParserTest {
 
     ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
     File test1 = new File("testFiles/test1.yaml");
     File test2 = new File("testFiles/test2.yaml");
 
@@ -35,5 +36,9 @@ public class ConfigParserTest {
         }
     }
 
-
+    @Test
+    void shouldSetTOKEN() {
+        SECRETS.receiveTOKEN();
+        assertEquals("myToken", SECRETS.TOKEN);
+    }
 }
