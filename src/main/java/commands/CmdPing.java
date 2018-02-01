@@ -10,7 +10,7 @@ public class CmdPing implements Command{
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-event.getTextChannel().sendMessage("Pong").queue();
+        event.getTextChannel().sendMessage("Pong").queue();
     }
 
     @Override

@@ -11,7 +11,6 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
-
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import util.SECRETS;
@@ -32,26 +31,11 @@ public class Main {
         addListeners(builder);
         addCommands(builder);
 
-        builder.setGame(new Game("self") {
-            @Override
-            public String getName() {
-                return "Say " + STATIC.PREFIX +" help";
-            }
-
-            @Override
-            public String getUrl() {
-                return null;
-            }
-
-            @Override
-            public GameType getType() {
-                return GameType.DEFAULT;
-            }
-        });
+        builder.setGame(Game.of(Game.GameType.DEFAULT,"Say " + STATIC.PREFIX +" help"));
 
         try {
             JDA jda = builder.buildBlocking();
-        } catch (LoginException | InterruptedException | RateLimitedException e) {
+        } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
 
