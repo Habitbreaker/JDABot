@@ -12,7 +12,6 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import util.SECRETS;
 import util.STATIC;
 
@@ -24,14 +23,14 @@ public class Main {
 
         JDABuilder builder = new JDABuilder(AccountType.BOT);
 
-        builder.setToken(SECRETS.TOKEN);
+        builder.setToken(SECRETS.receiveTOKEN());
         builder.setAutoReconnect(true);
 
         builder.setStatus(OnlineStatus.ONLINE);
         addListeners(builder);
         addCommands(builder);
 
-        builder.setGame(Game.of(Game.GameType.DEFAULT,"Say " + STATIC.PREFIX +" help"));
+        builder.setGame(Game.of(Game.GameType.DEFAULT,"Say " + STATIC.getPREFIX() +" help"));
 
         try {
             JDA jda = builder.buildBlocking();

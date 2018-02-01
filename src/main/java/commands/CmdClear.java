@@ -2,12 +2,10 @@ package commands;
 
 import embeds.EmbedError;
 import embeds.EmbedSuccess;
-import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageHistory;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;

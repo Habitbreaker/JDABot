@@ -2,7 +2,7 @@ package commands;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.lang.reflect.Member;
+
 
 public class CmdCall implements Command {
     @Override

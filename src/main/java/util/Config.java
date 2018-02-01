@@ -1,8 +1,14 @@
 package util;
 
 public class Config {
+
     public  String TOKEN;
+
     public  String PREFIX;
+
+    public  String PATH_TO_SOUND_FILES;
+
+
 
     public String getTOKEN() {
         return TOKEN;
@@ -20,13 +26,12 @@ public class Config {
         this.PREFIX = PREFIX;
     }
 
-    public String getPATH_FUN_CMDS() {
-        return PATH_FUN_CMDS;
+    public String getPATH_TO_SOUND_FILES() {
+        return PATH_TO_SOUND_FILES;
     }
 
-    public void setPATH_FUN_CMDS(String PATH_FUN_CMDS) {
-        this.PATH_FUN_CMDS = PATH_FUN_CMDS;
+    public void setPATH_TO_SOUND_FILES(String PATH_TO_SOUND_FILES) {
+        this.PATH_TO_SOUND_FILES = PATH_TO_SOUND_FILES;
     }
 
-    public  String PATH_FUN_CMDS;
 }

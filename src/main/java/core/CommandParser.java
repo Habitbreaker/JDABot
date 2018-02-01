@@ -12,7 +12,7 @@ public class CommandParser {
 
     public CommandContainer parse(String raw, MessageReceivedEvent event) {
 
-        String beheaded = raw.replaceFirst(STATIC.PREFIX, "");
+        String beheaded = raw.replaceFirst(STATIC.getPREFIX(), "");
         String[] splitBeheaded;
         Pattern pattern = Pattern.compile("(\"[\\W\\w]+\"$)");
         Matcher matcher = pattern.matcher(beheaded);
