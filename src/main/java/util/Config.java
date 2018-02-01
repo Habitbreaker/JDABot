@@ -3,6 +3,9 @@ package util;
 public class Config {
     public  String TOKEN;
     public  String PREFIX;
+    public  String PATH_FUN_CMDS;
+
+
 
     public String getTOKEN() {
         return TOKEN;
@@ -28,5 +31,4 @@ public class Config {
         this.PATH_FUN_CMDS = PATH_FUN_CMDS;
     }
 
-    public  String PATH_FUN_CMDS;
 }

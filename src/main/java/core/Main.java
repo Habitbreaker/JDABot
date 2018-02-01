@@ -19,11 +19,14 @@ import util.STATIC;
 
 import javax.security.auth.login.LoginException;
 
+import static net.dv8tion.jda.core.entities.Game.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
         JDABuilder builder = new JDABuilder(AccountType.BOT);
+        STATIC.receiveSTATICS();
         SECRETS.receiveTOKEN();
         builder.setToken(SECRETS.TOKEN);
         builder.setAutoReconnect(true);
@@ -32,26 +35,11 @@ public class Main {
         addListeners(builder);
         addCommands(builder);
 
-        builder.setGame(new Game("self") {
-            @Override
-            public String getName() {
-                return "Say " + STATIC.PREFIX +" help";
-            }
-
-            @Override
-            public String getUrl() {
-                return null;
-            }
-
-            @Override
-            public GameType getType() {
-                return GameType.DEFAULT;
-            }
-        });
+        builder.setGame(of(GameType.DEFAULT,"Say " + STATIC.PREFIX +" help"));
 
         try {
             JDA jda = builder.buildBlocking();
-        } catch (LoginException | InterruptedException | RateLimitedException e) {
+        } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
 

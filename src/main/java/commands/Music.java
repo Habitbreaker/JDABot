@@ -20,6 +20,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import util.STATIC;
 
 import java.awt.Color;
 import java.io.File;
@@ -33,8 +34,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static util.STATIC.FUN_PATH;
-import static util.STATIC.FUN_PATH_PI;
+import static util.STATIC.PATH_FUN_CMDS;
 
 
 public class Music implements Command {
@@ -321,7 +321,7 @@ public class Music implements Command {
                     return;
                 }
                 String funCmd = Arrays.stream(args).skip(1).collect(Collectors.joining());
-                Map<String,URL> funCmds = getSoundFiles(FUN_PATH_PI);
+                Map<String,URL> funCmds = getSoundFiles(STATIC.PATH_FUN_CMDS);
                 if(funCmds.containsKey(funCmd)) {
                     loadLocalTrack(funCmds.get(funCmd), event.getMember(), event.getMessage());
                 }
@@ -330,7 +330,7 @@ public class Music implements Command {
 
             case "list":
 
-                Map<String, URL> funList = getSoundFiles(FUN_PATH_PI);
+                Map<String, URL> funList = getSoundFiles(STATIC.PATH_FUN_CMDS);
                 StringBuilder builder = new StringBuilder("Avaible Commands:\n");
                 funList.forEach((s, url) -> builder.append(s + "\n"));
                 event.getChannel().sendMessage(new EmbedSuccess(builder.toString()).getEmbed()).queue();
