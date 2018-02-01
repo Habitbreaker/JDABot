@@ -1,0 +1,5 @@
+# Config for Bot
+
+TOKEN: MyToken
+PATH_TO_SOUND_FILES: PATH\\TO\\FILES
+PREFIX: "!"
