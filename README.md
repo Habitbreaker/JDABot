@@ -2,6 +2,7 @@
 JDA Bot
 
 ### [Requirements]<br>
+* Java
 * Maven
 * Python
 
