@@ -11,8 +11,7 @@ import java.util.regex.Pattern;
 public class CommandParser {
 
     public CommandContainer parse(String raw, MessageReceivedEvent event) {
-
-        String beheaded = raw.replaceFirst(STATIC.getPREFIX(), "");
+        String beheaded = raw.replaceFirst(Pattern.quote(STATIC.getPREFIX()), "");
         String[] splitBeheaded;
         Pattern pattern = Pattern.compile("(\"[\\W\\w]+\"$)");
         Matcher matcher = pattern.matcher(beheaded);
