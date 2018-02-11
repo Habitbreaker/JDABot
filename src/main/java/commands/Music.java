@@ -2,6 +2,7 @@ package commands;
 
 import agent.VoiceChannelCleanup;
 import audioCore.AudioInfo;
+import audioCore.GoogleSpeech;
 import audioCore.PlayerSendHandler;
 import audioCore.TrackManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
@@ -50,7 +51,6 @@ public class Music implements Command {
     public Music() {
         AudioSourceManagers.registerRemoteSources(MANAGER);
         AudioSourceManagers.registerLocalSource(MANAGER);
-
     }
 
 
@@ -182,6 +182,7 @@ public class Music implements Command {
             }
         });
     }
+
 
     /**
      * Stoppt den momentanen Track, worauf der nächste Track gespielt wird.
@@ -361,6 +362,20 @@ public class Music implements Command {
 
                 if (isIdle(guild)) return;
                 getManager(guild).shuffleQueue();
+
+                break;
+
+            case "tts":
+
+                String text = Arrays.stream(args).skip(1).collect(Collectors.joining());
+                System.out.println(text);
+
+                try {
+                    loadLocalTrack(new GoogleSpeech(text).writeToFile().toURI().toURL(), event.getMember(), event.getMessage());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
                 break;
 
