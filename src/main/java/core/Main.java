@@ -8,7 +8,6 @@ import listeners.CommandListener;
 import listeners.ReadyListener;
 import listeners.ReconnectListener;
 import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
@@ -33,12 +32,10 @@ public class Main {
         builder.setGame(Game.of(Game.GameType.DEFAULT,"Say " + STATIC.getPREFIX() +" help"));
 
         try {
-            JDA jda = builder.buildBlocking();
-        } catch (LoginException | InterruptedException e) {
+            builder.buildAsync();
+        } catch (LoginException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private static void addListeners(JDABuilder builder) {
